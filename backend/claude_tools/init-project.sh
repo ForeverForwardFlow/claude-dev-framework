@@ -117,6 +117,7 @@ cat > tsconfig.json << 'TSCONFIG'
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "lib": ["ES2022"],
+    "types": ["@cloudflare/workers-types", "node"],
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -525,7 +526,7 @@ fi
 # Create example test
 cat > src/validation.test.ts << 'VALIDATIONTEST'
 import { describe, it, expect } from 'vitest';
-import { sanitizeError, ExampleInputSchema } from './validation';
+import { sanitizeError, ExampleInputSchema } from './validation.js';
 
 describe('sanitizeError', () => {
   it('should redact email addresses', () => {

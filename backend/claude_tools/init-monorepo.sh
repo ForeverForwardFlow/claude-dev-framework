@@ -310,6 +310,7 @@ cat > shared/tsconfig.json << 'SHAREDTS'
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "lib": ["ES2022"],
+    "types": ["node"],
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -321,7 +322,7 @@ cat > shared/tsconfig.json << 'SHAREDTS'
     "isolatedModules": true
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "exclude": ["node_modules", "dist", "**/*.test.ts"]
 }
 SHAREDTS
 
@@ -407,7 +408,7 @@ SHAREDVALIDATION
 
 cat > shared/src/errors.test.ts << 'SHAREDERRORSTEST'
 import { describe, it, expect } from 'vitest';
-import { ValidationError, sanitizeError, sanitizeErrorMessage } from './errors';
+import { ValidationError, sanitizeError, sanitizeErrorMessage } from './errors.js';
 
 describe('ValidationError', () => {
   it('should create error with message', () => {
@@ -483,6 +484,7 @@ cat > packages/example/tsconfig.json << 'EXAMPLETS'
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "lib": ["ES2022"],
+    "types": ["@cloudflare/workers-types", "node"],
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -494,7 +496,7 @@ cat > packages/example/tsconfig.json << 'EXAMPLETS'
     "isolatedModules": true
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "exclude": ["node_modules", "dist", "**/*.test.ts"]
 }
 EXAMPLETS
 
