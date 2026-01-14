@@ -37,6 +37,7 @@ cat > package.json << PACKAGEJSON
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "packageManager": "npm@10.8.1",
   "workspaces": [
     "packages/*",
     "shared"
