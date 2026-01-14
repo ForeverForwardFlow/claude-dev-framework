@@ -102,6 +102,40 @@ This creates:
 - **Pre-commit hooks** - Lint, format, and test before commit
 - **CLAUDE.md per project** - Project-specific guidance for Claude Code
 
+## Deployment
+
+### Frontend (Cloudflare Pages)
+
+Deploy any Quasar SPA to Cloudflare Pages:
+
+```bash
+# Build the SPA
+npx quasar build
+
+# Deploy to Cloudflare Pages
+npx wrangler pages deploy dist/spa --project-name=my-app
+```
+
+For SPA routing to work, create `public/_redirects`:
+
+```
+/*    /index.html   200
+```
+
+### Backend (Cloudflare Workers)
+
+Deploy workers directly:
+
+```bash
+npx wrangler deploy
+```
+
+Or for monorepos:
+
+```bash
+npm run deploy -w packages/my-worker
+```
+
 ## MCP Server Integration
 
 The frontend CLAUDE.md documents integration with MCP servers:
