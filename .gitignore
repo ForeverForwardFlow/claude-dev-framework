@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+.quasar/
+.turbo/
+
+# Test coverage
+coverage/
+test-results/
+playwright-report/
+
+# Environment and secrets
+.env
+.env.local
+.env.*.local
+.dev.vars
+*.json.bak
+
+# Credentials (never commit)
+**/credentials.json
+**/token.json
+**/*-token.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+
+# Screenshots and images (test artifacts)
+*.png
+*.jpg
+*.jpeg
+!**/assets/**

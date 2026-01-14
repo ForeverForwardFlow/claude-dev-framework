@@ -1,0 +1,35 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit:*.vue|Edit:*.ts|Edit:*.tsx|Write:*.vue|Write:*.ts|Write:*.tsx",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npx eslint --fix --quiet $CLAUDE_FILE_PATHS 2>/dev/null || true"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit:*.spec.ts|Edit:*.test.ts|Write:*.spec.ts|Write:*.test.ts",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npm run test:unit -- --run --reporter=dot --passWithNoTests 2>&1 | head -20"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '🔍 Running quality checks...' && npm run type-check --silent 2>&1 | tail -5 && npm run lint --silent -- --quiet 2>&1 | tail -5 && npm run test:unit -- --run --passWithNoTests --reporter=dot 2>&1 | tail -10 && echo '✅ Quality checks complete'"
+          }
+        ]
+      }
+    ]
+  }
+}
